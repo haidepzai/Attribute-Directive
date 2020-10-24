@@ -11,6 +11,10 @@ export class HighlightDirective {
   @Input() defaultColor: string;
 
   //"appHighlight" ist ein Alias, damit [appHighlight] funktioniert bei app.component.html
+  //Sonst müsste man @Input() appHighlight: string; machen, was aber BAD PRACTICE ist!
+  //Ohne Alias, müsste man bei app.component.html:
+  //<p appHighlight [highlightColor]="color">Highlighted with parent component's color</p> STATT
+  //<p [appHighlight]="color">Highlight me!</p> -> Deswegen Alias!
   @Input("appHighlight") highlightColor: string;
   //appHighlight bezieht sich auf Directive selector [appHighlight]
   //Inside the directive the property is known as highlightColor. Outside the directive, where you bind to it, it's known as appHighlight.
