@@ -2,21 +2,37 @@
 
 <h4>Pick a highlight color</h4>
 <div>
-  <input type="radio" name="colors" (click)="color='lightgreen'">Green
-  <input type="radio" name="colors" (click)="color='yellow'">Yellow
-  <input type="radio" name="colors" (click)="color='cyan'">Cyan
+  <input type="radio" name="colors" (click)="color='lightgreen'" />Green
+  <input type="radio" name="colors" (click)="color='yellow'" />Yellow
+  <input type="radio" name="colors" (click)="color='cyan'" />Cyan
 </div>
 <p [appHighlight]="color">Highlight me!</p>
+<!-- Binding an Attribute Directive (highlight.directive) -->
+<!-- color Property von app.component, dieser wurde oben gesetzt -->
+<!-- setzt @Input("appHighlight") highlightColor: string; mit der entsprechende Farbe-->
 
+<!-- defaultColor bei highlight.directive -->
 <p [appHighlight]="color" defaultColor="violet">
   Highlight me too!
 </p>
+<!-- geht nicht, da er nicht weiß worauf sich defaultcolor bezieht -->
+<p defaultColor="violet">Test Highlight</p>
 
-<hr>
+<hr />
 <p><i>Mouse over the following lines to see fixed highlights</i></p>
 
+<!-- Egal welche Schreibweise -->
+<!--  @Input("appHighlight") highlightColor: string; -->
 <p [appHighlight]="'yellow'">Highlighted in yellow</p>
 <p appHighlight="orange">Highlighted in orange</p>
+<!--To summarize, Angular found the appHighlight attribute on the host <p> element. It created an instance of the HighlightDirective class -->
+
+<!-- Property Binding -->
+<p [innerText]="testString"></p>
+
+<!-- Geht zu Directive highlight und @Input testHighlighter -->
+<p appHighlight testHighlighter="blue">Highlighted in yellow</p>
+<p appHighlight [testHighlighter]="'green'">Highlighted in orange</p>
 
 
 <!-- 
