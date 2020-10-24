@@ -6,6 +6,7 @@
   <input type="radio" name="colors" (click)="color='yellow'" />Yellow
   <input type="radio" name="colors" (click)="color='cyan'" />Cyan
 </div>
+
 <p [appHighlight]="color">Highlight me!</p>
 <!-- Binding an Attribute Directive (highlight.directive) -->
 <!-- color Property von app.component, dieser wurde oben gesetzt -->
@@ -15,14 +16,17 @@
 <p [appHighlight]="color" defaultColor="violet">
   Highlight me too!
 </p>
+
 <!-- geht nicht, da er nicht weiß worauf sich defaultcolor bezieht -->
-<p defaultColor="violet">Test Highlight</p>
+<p defaultColor="violet">Geht nicht</p>
+<!-- Lösung: apphighlight erwähnen -->
+<p appHighlight defaultColor="violet">Hier geht es</p>
 
 <hr />
 <p><i>Mouse over the following lines to see fixed highlights</i></p>
 
 <!-- Egal welche Schreibweise -->
-<!--  @Input("appHighlight") highlightColor: string; -->
+<!-- Beide rufen @Input("appHighlight") highlightColor: string; -->
 <p [appHighlight]="'yellow'">Highlighted in yellow</p>
 <p appHighlight="orange">Highlighted in orange</p>
 <!--To summarize, Angular found the appHighlight attribute on the host <p> element. It created an instance of the HighlightDirective class -->
@@ -31,9 +35,12 @@
 <p [innerText]="testString"></p>
 
 <!-- Geht zu Directive highlight und @Input testHighlighter -->
-<p appHighlight testHighlighter="blue">Highlighted in yellow</p>
-<p appHighlight [testHighlighter]="'green'">Highlighted in orange</p>
+<p appHighlight testHighlighter="blue">Highlighted in blue</p>
+<p appHighlight [testHighlighter]="'green'">Highlighted in green</p>
+<p appHighlight [testHighlighter]="color">Highlight me</p>
+<!--[] lässt sich Property binden color von app.component! -->
 
+<p appHighlight testHighlighter="color">Geht nicht</p>
 
 <!-- 
 Copyright Google LLC. All Rights Reserved.
