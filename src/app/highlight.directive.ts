@@ -21,12 +21,14 @@ export class HighlightDirective {
 
   @Input() testHighlighter: string;
 
+  @Input("irgendeinAlias") testAlias: string;
+
   //Beim Hovern (MouseEnter)
   //Methode hightlight() wird aufgerufen
   //Parameter: Entweder ausgewählte HighLightColor oder DefaultColor (violet) oder einfach nur rot
   @HostListener("mouseenter") onMouseEnter() {
     this.highlight(
-      this.highlightColor || this.defaultColor || this.testHighlighter || "red"
+      this.highlightColor || this.defaultColor || this.testHighlighter || this.testAlias || "red"
     );
   }
 
