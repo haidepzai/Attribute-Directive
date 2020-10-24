@@ -10,8 +10,10 @@ export class HighlightDirective {
 
   @Input() defaultColor: string;
 
+  //"appHighlight" ist ein Alias, damit [appHighlight] funktioniert bei app.component.html
   @Input("appHighlight") highlightColor: string;
   //appHighlight bezieht sich auf Directive selector [appHighlight]
+  //Inside the directive the property is known as highlightColor. Outside the directive, where you bind to it, it's known as appHighlight.
 
   @Input() testHighlighter: string;
 
@@ -19,7 +21,9 @@ export class HighlightDirective {
   //Methode hightlight() wird aufgerufen
   //Parameter: Entweder ausgewählte HighLightColor oder DefaultColor (violet) oder einfach nur rot
   @HostListener("mouseenter") onMouseEnter() {
-    this.highlight(this.highlightColor || this.defaultColor || this.testHighlighter || "red");
+    this.highlight(
+      this.highlightColor || this.defaultColor || this.testHighlighter || "red"
+    );
   }
 
   @HostListener("mouseleave") onMouseLeave() {
